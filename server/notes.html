@@ -1,0 +1,132 @@
+react ke lye import syntax use krte hain 
+   import mongoose from "mongoose"
+
+without react only node js mai require("mongoose") wala syntax use krte hain
+
+
+
+. → "Idhar hi hoon"
+
+.. → "Upar jao"
+
+foldername/ → "Andar jao"
+
+
+
+import express from 'express'
+✅ express ek Node.js framework hai jo server banane ke liye use hota hai.
+Ye line bole rahi hai: "express package ko import kar ke iska naam 'express' rakho".
+
+js
+Copy
+Edit
+import mongoose from 'mongoose'
+✅ mongoose MongoDB se connect hone ke liye library hai.
+Ye line keh rahi hai: "mongoose package import karo taaki database se baat kar sako"
+
+js
+Copy
+Edit
+import cors from 'cors'
+✅ cors (Cross-Origin Resource Sharing) allow karta hai frontend (React) aur backend (Express) ke beech communication.
+By default browser restrict karta hai, cors() se allow ho jaata hai.
+
+js
+Copy
+Edit
+import dotenv from 'dotenv'
+✅ .env file me likhe secrets (e.g., DB URI, JWT secret) ko Node.js me load karne ke liye dotenv use hota hai.
+
+js
+Copy
+Edit
+import todoRoutes from './routes/todoRoutes.js'
+✅ Ye file import kar raha hai jisme tumhare Todo-related API routes likhe gaye hain.
+Path ./routes/... se pata chalta hai ki routes folder ke andar hai.
+
+js
+Copy
+Edit
+dotenv.config()
+✅ Ye line .env file ko load karti hai — tabhi process.env.MONGO_URI jaise variables kaam karte hain.
+
+js
+Copy
+Edit
+const app = express()
+✅ Ek Express app banaya gaya — iska use server setup aur API banane ke liye hota hai.
+Jaise app.get(), app.post() wagaira.
+
+js
+Copy
+Edit
+app.use(cors())
+✅ Ye line batati hai ki server har request ke liye CORS allow karega.
+React frontend agar alag port pe chal raha hai (e.g., 5173), to bhi request ho paaye.
+
+js
+Copy
+Edit
+app.use(express.json())
+✅ Is line se Express ko batate ho ki request ke body ko JSON format me read kare.
+POST/PUT requests ke liye zaroori hota hai.
+
+js
+Copy
+Edit
+app.use("/api/todos", todoRoutes)
+✅ Ye batata hai ki agar koi request /api/todos se shuru hoti hai, to todoRoutes wala logic chalayega.
+Jaise:
+
+/api/todos → Get all todos
+
+/api/todos/:id → Update/delete specific todo
+
+js
+Copy
+Edit
+mongoose.connect(process.env.MONGO_URI)
+✅ MongoDB se connect karne ki koshish karta hai, URI ko .env file se leta hai.
+Agar URI galat ho, to error throw karega.
+
+js
+Copy
+Edit
+.then(() => {
+  console.log("MongoDB connected")
+  app.listen(5000, () => console.log("Server running on port 5000"))
+})
+✅ Agar MongoDB se connection successful ho jaata hai, to:
+
+Console me print karega "MongoDB connected"
+
+Server ko port 5000 pe start kar dega
+
+js
+Copy
+Edit
+.catch(err => console.error(err))
+✅ Agar MongoDB connect nahi hota, to ye error catch karega aur console me print karega.
+
+
+in short
+
+
+dotenv.config() 
+//Ye line .env file ko load karti hai — tabhi process.env.MONGO_URI jaise variables kaam karte hain.
+const app = express()
+// Ek Express app banaya gaya — iska use server setup aur API banane ke liye hota hai. Jaise app.get(), app.post() wagaira.
+app.use(cors())
+//Ye line batati hai ki server har request ke liye CORS allow karega.React frontend agar alag port pe chal raha hai (e.g., 5173), to bhi request ho paaye.
+app.use(express.json())
+// Is line se Express ko batate ho ki request ke body ko JSON format me read kare.POST/PUT requests ke liye zaroori hota hai.
+
+app.use("/api/todos", todoRoutes)
+//Ye batata hai ki agar koi request /api/todos se shuru hoti hai, to todoRoutes wala logic chalayega. Jaise:
+// /api/todos → Get all todos
+// /api/todos/:id → Update/delete specific todo
+
+
+() => (JSX)	             ✅ Implicit return
+() => { return JSX }	   ✅ Explicit return
+() => { JSX }	           ❌ Invalid (nothing returned)
